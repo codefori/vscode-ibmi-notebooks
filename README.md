@@ -17,10 +17,10 @@ Adds an IBM i Notebook, which allows users to create notebooks to:
 
 ## How to use
 
-1. Connect to an IBM i using Code for IBM i.
-2. Create a file with the `.inb` extension. 
-   * This can be on your local machine or the IFS, but not in source members.
-3. Open the `.inb` file and enjoy.
+1. Make sure to have a local workspace open
+2. Connect to an IBM i using Code for IBM i.
+3. Create a file with the `.inb` extension in your workspace
+4. Open the `.inb` file and enjoy.
 
 ## CL commands
 
