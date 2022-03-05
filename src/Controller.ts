@@ -13,7 +13,7 @@ export default class IBMiController {
   readonly controllerId = 'ibmi-notebook-controller-id';
   readonly notebookType = 'ibmi-notebook';
   readonly label = 'IBM i Notebook';
-  readonly supportedLanguages = ['sql', `cl`];
+  readonly supportedLanguages = ['sql', `cl`, `shellscript`];
 
   private readonly _controller: vscode.NotebookController;
   private _executionOrder = 0;
@@ -77,6 +77,37 @@ export default class IBMiController {
           const command: CommandResult = await vscode.commands.executeCommand(`code-for-ibmi.runCommand`, {
             command: cell.document.getText(),
             environment: `ile`
+          });
+
+          if (command.stdout) {
+            items.push(vscode.NotebookCellOutputItem.text([
+              '```',
+              command.stdout,
+              '```'
+            ].join('\n'), `text/markdown`));
+          }
+
+          if (command.stderr) {
+            items.push(vscode.NotebookCellOutputItem.text([
+              '```',
+              command.stderr,
+              '```'
+            ].join('\n'), `text/markdown`));
+          }
+        } catch (e) {
+          items.push(
+            vscode.NotebookCellOutputItem.stderr(`Failed to runCommand. Are you connected?`),
+            //@ts-ignore
+            vscode.NotebookCellOutputItem.stderr(e.message)
+          );
+        }
+        break;
+
+      case `shellscript`: 
+        try {
+          const command: CommandResult = await vscode.commands.executeCommand(`code-for-ibmi.runCommand`, {
+            command: cell.document.getText(),
+            environment: `pase`
           });
 
           if (command.stdout) {
