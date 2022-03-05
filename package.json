@@ -1,5 +1,6 @@
 {
 	"name": "vscode-ibmi-notebooks",
+	"icon": "icon.png",
 	"displayName": "vscode-ibmi-notebooks",
 	"description": "VS Code Notebooks for IBM i",
 	"version": "0.0.1",
@@ -11,6 +12,10 @@
 		"url": "https://github.com/halcyon-tech"
 	},
 	"publisher": "halcyontechltd",
+	"repository": {
+		"url": "https://github.com/halcyon-tech/vscode-ibmi-notebooks"
+	},
+	"license": "MIT",
 	"extensionDependencies": [
 		"halcyontechltd.code-for-ibmi"
 	],
