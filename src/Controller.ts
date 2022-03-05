@@ -16,7 +16,7 @@ interface CommandError {
 export default class Controller {
   readonly controllerId = 'ibmi-notebook-controller-id';
   readonly notebookType = 'ibmi-notebook';
-  readonly label = 'My Notebook';
+  readonly label = 'IBM i Notebook';
   readonly supportedLanguages = ['sql', `cl`];
 
   private readonly _controller: vscode.NotebookController;
