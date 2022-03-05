@@ -9,11 +9,7 @@ interface CommandResult {
   code: number;
 }
 
-interface CommandError {
-  message: string;
-}
-
-export default class Controller {
+export default class IBMiController {
   readonly controllerId = 'ibmi-notebook-controller-id';
   readonly notebookType = 'ibmi-notebook';
   readonly label = 'IBM i Notebook';
