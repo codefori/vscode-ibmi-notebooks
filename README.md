@@ -5,6 +5,7 @@
 Adds an IBM i Notebook, which allows users to create notebooks to:
 
 * run CL commands
+* run commands in PASE (`shellscript`)
 * execute SQL statements
 
 ## What is the point of a Notebook?
@@ -17,7 +18,9 @@ Adds an IBM i Notebook, which allows users to create notebooks to:
 
 ## How to use
 
-1. **Make sure to have a local workspace open**
+1. `.inb` files have to be local.
+   * Make sure to have a local workspace open, **or**
+   * After you've connected, you can open a local `.inb` file
 2. Connect to an IBM i using Code for IBM i.
 3. Create a file with the `.inb` extension in your workspace
 4. Open the `.inb` file and enjoy.
