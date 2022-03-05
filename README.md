@@ -1,4 +1,4 @@
-# vscode-ibmi-notebooks
+# IBM i Notebooks
 
 <img width="1313" alt="Screenshot 2022-03-05 at 11 27 00 AM" src="https://user-images.githubusercontent.com/3708366/156892015-bb9a935c-638d-4542-8b26-ebfedfbfbf10.png">
 
@@ -17,7 +17,7 @@ Adds an IBM i Notebook, which allows users to create notebooks to:
 
 ## How to use
 
-1. Make sure to have a local workspace open
+1. **Make sure to have a local workspace open**
 2. Connect to an IBM i using Code for IBM i.
 3. Create a file with the `.inb` extension in your workspace
 4. Open the `.inb` file and enjoy.
