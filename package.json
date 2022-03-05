@@ -6,8 +6,16 @@
 	"engines": {
 		"vscode": "^1.65.0"
 	},
+	"author": {
+		"name": "Halcyon Tech Ltd",
+		"url": "https://github.com/halcyon-tech"
+	},
+	"publisher": "halcyontechltd",
+	"extensionDependencies": [
+		"halcyontechltd.code-for-ibmi"
+	],
 	"categories": [
-		"Other"
+		"Notebooks"
 	],
 	"activationEvents": [
 		"onNotebook:ibmi-notebook"
