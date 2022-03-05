@@ -1,9 +1,9 @@
 {
 	"name": "vscode-ibmi-notebooks",
 	"icon": "icon.png",
-	"displayName": "vscode-ibmi-notebooks",
+	"displayName": "IBM i Notebooks",
 	"description": "VS Code Notebooks for IBM i",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"engines": {
 		"vscode": "^1.65.0"
 	},
