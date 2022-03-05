@@ -1,5 +1,7 @@
 # vscode-ibmi-notebooks
 
+<img width="1313" alt="Screenshot 2022-03-05 at 11 27 00 AM" src="https://user-images.githubusercontent.com/3708366/156892015-bb9a935c-638d-4542-8b26-ebfedfbfbf10.png">
+
 Adds an IBM i Notebook, which allows users to create notebooks to:
 
 * run CL commands
