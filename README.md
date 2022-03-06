@@ -18,12 +18,12 @@ Adds an IBM i Notebook, which allows users to create notebooks to:
 
 ## How to use
 
-1. `.inb` files have to be local.
-   * Make sure to have a local workspace open, **or**
-   * After you've connected, you can open a local `.inb` file
-2. Connect to an IBM i using Code for IBM i.
-3. Create a file with the `.inb` extension in your workspace
-4. Open the `.inb` file and enjoy.
+1. Connect to an IBM i using Code for IBM i.
+2. Create a file with the `.inb` extension
+3. Open an `.inb` file
+   * You can open `.inb` files in the IFS (not source members), **or**
+   * you can open local `.inb` files.
+   * You can also use the 'New Notebook' command to create a new local Notebook. Use F1/Ctrl+Shift+P and search 'new notebook'
 
 ## CL commands
 
