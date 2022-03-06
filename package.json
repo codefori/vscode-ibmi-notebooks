@@ -23,10 +23,18 @@
 		"Notebooks"
 	],
 	"activationEvents": [
-		"onNotebook:ibmi-notebook"
+		"onNotebook:ibmi-notebook",
+		"onStartupFinished"
 	],
 	"main": "./dist/extension.js",
 	"contributes": {
+		"commands": [
+			{
+				"command": "vscode-ibmi-notebooks.open",
+				"title": "New Notebook",
+				"category": "IBM i Notebooks"
+			}
+		],
 		"notebooks": [
 			{
 				"id": "ibmi-notebook",

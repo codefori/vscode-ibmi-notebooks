@@ -14,7 +14,15 @@
         "curly": "warn",
         "eqeqeq": "warn",
         "no-throw-literal": "warn",
-        "semi": "off"
+        "semi": "off",
+		"no-const-assign": "warn",
+		"no-this-before-super": "warn",
+		"no-unreachable": "warn",
+		"no-var": "error",
+		"quotes": ["warn", "backtick"],
+		"constructor-super": "warn",
+		"valid-typeof": "warn",
+		"indent": ["error", 2]
     },
     "ignorePatterns": [
         "out",
