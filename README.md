@@ -8,6 +8,8 @@ Adds an IBM i Notebook, which allows users to create notebooks to:
 * run commands in PASE (`shellscript`)
 * execute SQL statements
 
+**Depends on Code for IBM i.**
+
 ## What is the point of a Notebook?
 
 > Notebooks are documents that contain a mix of rich Markdown, executable code snippets, and accompanying rich output. These are all separated into distinct cells and can be interleaved in any order.
