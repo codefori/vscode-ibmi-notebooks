@@ -12,7 +12,7 @@ export default class IBMiSerializer implements vscode.NotebookSerializer {
     content: Uint8Array,
     _token: vscode.CancellationToken
   ): Promise<vscode.NotebookData> {
-    var contents = new TextDecoder().decode(content);
+    let contents = new TextDecoder().decode(content);
 
     let raw: RawNotebookCell[];
     try {

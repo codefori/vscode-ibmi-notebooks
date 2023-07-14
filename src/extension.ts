@@ -4,6 +4,7 @@ import * as vscode from 'vscode';
 
 import IBMiSerializer from './IBMiSerializer';
 import IBMiController from './Controller';
+import { loadBase } from './base';
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -24,6 +25,8 @@ export function activate(context: vscode.ExtensionContext) {
     new IBMiController(),
     openNotebook
   );
+  
+  loadBase();
 }
 
 // this method is called when your extension is deactivated

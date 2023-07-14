@@ -2,18 +2,14 @@ import * as vscode from 'vscode';
 
 //@ts-ignore
 import * as mdTable from 'json-to-markdown-table';
-
-interface CommandResult {
-  stdout: string;
-  stderr: string;
-  code: number;
-}
+import { getInstance } from './base';
+import { CommandResult } from '@halcyontech/vscode-ibmi-types';
 
 export default class IBMiController {
-  readonly controllerId = 'ibmi-notebook-controller-id';
-  readonly notebookType = 'ibmi-notebook';
-  readonly label = 'IBM i Notebook';
-  readonly supportedLanguages = ['sql', `cl`, `shellscript`];
+  readonly controllerId = `ibmi-notebook-controller-id`;
+  readonly notebookType = `ibmi-notebook`;
+  readonly label = `IBM i Notebook`;
+  readonly supportedLanguages = [`sql`, `cl`, `shellscript`];
 
   private readonly _controller: vscode.NotebookController;
   private _executionOrder = 0;
@@ -45,23 +41,27 @@ export default class IBMiController {
   }
 
   private async _doExecution(cell: vscode.NotebookCell): Promise<void> {
+    const instance = getInstance();
+    const connection = instance?.getConnection();
+    const content = instance?.getContent();
     const items: vscode.NotebookCellOutputItem[] = [];
 
     const execution = this._controller.createNotebookCellExecution(cell);
     execution.executionOrder = ++this._executionOrder;
     execution.start(Date.now()); // Keep track of elapsed time to execute cell.
 
-    switch (cell.document.languageId) {
-      case 'sql':
+    if (connection && content) {
+      switch (cell.document.languageId) {
+      case `sql`:
         try {
-          const table: Object[] = await vscode.commands.executeCommand(`code-for-ibmi.runQuery`, cell.document.getText())
+          const table: Object[] = await content.runSQL(cell.document.getText());
           const keys = Object.keys(table[0]);
 
           // Add `-` for blanks.
           table.forEach(row => {
             keys.forEach(key => {
               //@ts-ignore
-              if (row[key] === '') row[key] = `-`;
+              if (row[key] === ``) { row[key] = `-`; }
             });
           });
 
@@ -72,27 +72,27 @@ export default class IBMiController {
         }
         break;
 
-      case `cl`: 
+      case `cl`:
         try {
-          const command: CommandResult = await vscode.commands.executeCommand(`code-for-ibmi.runCommand`, {
+          const command = await connection.runCommand({
             command: cell.document.getText(),
             environment: `ile`
           });
 
           if (command.stdout) {
             items.push(vscode.NotebookCellOutputItem.text([
-              '```',
+              `\`\`\``,
               command.stdout,
-              '```'
-            ].join('\n'), `text/markdown`));
+              `\`\`\``
+            ].join(`\n`), `text/markdown`));
           }
 
           if (command.stderr) {
             items.push(vscode.NotebookCellOutputItem.text([
-              '```',
+              `\`\`\``,
               command.stderr,
-              '```'
-            ].join('\n'), `text/markdown`));
+              `\`\`\``
+            ].join(`\n`), `text/markdown`));
           }
         } catch (e) {
           items.push(
@@ -103,7 +103,7 @@ export default class IBMiController {
         }
         break;
 
-      case `shellscript`: 
+      case `shellscript`:
         try {
           const command: CommandResult = await vscode.commands.executeCommand(`code-for-ibmi.runCommand`, {
             command: cell.document.getText(),
@@ -112,18 +112,18 @@ export default class IBMiController {
 
           if (command.stdout) {
             items.push(vscode.NotebookCellOutputItem.text([
-              '```',
+              `\`\`\``,
               command.stdout,
-              '```'
-            ].join('\n'), `text/markdown`));
+              `\`\`\``
+            ].join(`\n`), `text/markdown`));
           }
 
           if (command.stderr) {
             items.push(vscode.NotebookCellOutputItem.text([
-              '```',
+              `\`\`\``,
               command.stderr,
-              '```'
-            ].join('\n'), `text/markdown`));
+              `\`\`\``
+            ].join(`\n`), `text/markdown`));
           }
         } catch (e) {
           items.push(
@@ -133,6 +133,12 @@ export default class IBMiController {
           );
         }
         break;
+      }
+
+    } else {
+      items.push(
+        vscode.NotebookCellOutputItem.stderr(`Failed to execute. Are you connected?`)
+      )
     }
 
     execution.replaceOutput([
